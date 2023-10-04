@@ -264,5 +264,5 @@
     permisos_globales.classList.add('show');
   });
 </script>
-<script src="<?php echo BASE_URL ?>Assets/js/modulos/permisos/permisos.js"></script>
+<script src="<?php echo BASE_URL ?>assets/js/modulos/permisos/permisos.js"></script>
 <?php include "Views/Templates/footer.php"; ?>

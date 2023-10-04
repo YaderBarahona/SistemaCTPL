@@ -151,5 +151,5 @@ include "Views/Templates/header.php"; ?>
     </div>
   </div>
 </div>
-<script src="<?php echo BASE_URL; ?>Assets/js/modulos/estudiantes/estudiantes.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/modulos/estudiantes/estudiantes.js"></script>
 <?php include "Views/Templates/footer.php"; ?>

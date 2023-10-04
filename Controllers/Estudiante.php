@@ -78,7 +78,7 @@ class Estudiante extends Controller
       </div>';
       } else {
         $data[$i]['acciones'] = '<div>
-        <span class="badge badge-info">Usuario sin acciones</span>
+        <span class="badge bg-info">Usuario sin acciones</span>
         </div>';
       }
     }

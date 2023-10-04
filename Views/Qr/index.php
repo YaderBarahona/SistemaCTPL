@@ -8,9 +8,9 @@ include "Views/Templates/header.php"; ?>
       <canvas id="qrCanvas" style="display:none;"></canvas>
       <div id="qrResult" class="qr-result"></div>
     </div>
-    <audio id="beepSound" src="<?php echo BASE_URL; ?>Assets/audio/barcode.mp3" hidden></audio>
+    <audio id="beepSound" src="<?php echo BASE_URL; ?>assets/audio/barcode.mp3" hidden></audio>
   </div>
 </div>
-<script src="<?php echo BASE_URL; ?>Assets/js/modulos/QR/QR.js"></script>
-<script src="<?php echo BASE_URL; ?>Assets/js/jsQR-master/dist/jsQR.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/modulos/QR/QR.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/jsQR-master/dist/jsQR.js"></script>
 <?php include "Views/Templates/footer.php"; ?>

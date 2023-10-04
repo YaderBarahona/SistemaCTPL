@@ -44,7 +44,7 @@
         <?php if (isset($_SESSION['permisoCompletoPanel'][0]['tp_perm'])) { ?>
 
           <div>
-            <img src="assets/images/escudo_ctp.png" class="logo-icon" alt="logo icon">
+            <img src="<?php echo BASE_URL; ?>assets/images/escudo_ctp.png" class="logo-icon" alt="logo icon">
           </div>
           <div>
             <a href="<?php echo BASE_URL; ?>Principal">
@@ -55,33 +55,33 @@
           </div>
       </div>
     <?php } else { ?>
-      <div class="sidebar-header">
-        <div>
-          <img src="assets/images/escudo_ctp.png" class="logo-icon" alt="logo icon">
-        </div>
-        <div>
-          <h4 class="logo-text">SCCTPL</h4>
-        </div>
-        <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
-        </div>
+
+      <div>
+        <img src="<?php echo BASE_URL; ?>assets/images/escudo_ctp.png" class="logo-icon" alt="logo icon">
       </div>
+      <div>
+        <h4 class="logo-text">SCCTPL</h4>
+      </div>
+      <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+      </div>
+    </div>
+  <?php } ?>
+
+  <!--navigation-->
+  <ul class="metismenu" id="menu">
+    <?php if (isset($_SESSION['permisoCompletoPanel'][0]['tp_perm'])) { ?>
+      <li>
+        <a href="<?php echo BASE_URL; ?>Principal">
+          <div class="parent-icon"><i class='bx bx-home'></i>
+          </div>
+          <div class="menu-title">Panel</div>
+        </a>
+      </li>
     <?php } ?>
 
-    <!--navigation-->
-    <ul class="metismenu" id="menu">
-      <?php if (isset($_SESSION['permisoCompletoPanel'][0]['tp_perm'])) { ?>
-        <li>
-          <a href="<?php echo BASE_URL; ?>Principal">
-            <div class="parent-icon"><i class='bx bx-home'></i>
-            </div>
-            <div class="menu-title">Panel</div>
-          </a>
-        </li>
-      <?php } ?>
+    <hr>
 
-      <hr>
-
-      <!-- <li>
+    <!-- <li>
           <a href="javascript:;" class="has-arrow">
             <div class="parent-icon"><i class='bx bx-folder-open'></i>
             </div>
@@ -114,114 +114,114 @@
           </ul>
         </li> -->
 
-      <?php if (isset($_SESSION['permisoCompletoUsuario'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarUsuario'][0]['tp_perm']) || isset($_SESSION['permisoCompletoRoles'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarRoles'][0]['tp_perm']) || isset($_SESSION['permisoCompletoEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoCompletoSecciones'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarSecciones'][0]['tp_perm']) || isset($_SESSION['permisoCompletoAsistencias'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarAsistencias'][0]['tp_perm'])) { ?>
-        <li class="menu-label">Gestión</li>
-      <?php } ?>
+    <?php if (isset($_SESSION['permisoCompletoUsuario'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarUsuario'][0]['tp_perm']) || isset($_SESSION['permisoCompletoRoles'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarRoles'][0]['tp_perm']) || isset($_SESSION['permisoCompletoEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoCompletoSecciones'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarSecciones'][0]['tp_perm']) || isset($_SESSION['permisoCompletoAsistencias'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarAsistencias'][0]['tp_perm'])) { ?>
+      <li class="menu-label">Gestión</li>
+    <?php } ?>
 
-      <?php if (isset($_SESSION['permisoCompletoUsuario'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarUsuario'][0]['tp_perm'])) { ?>
-
-        <li>
-          <a href="<?php echo BASE_URL; ?>Usuario">
-            <div class="parent-icon"><i class='bx bx-user'></i>
-            </div>
-            <div class="menu-title">Usuarios</div>
-          </a>
-        </li>
-
-      <?php } ?>
-
-      <?php if (isset($_SESSION['permisoCompletoRoles'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarRoles'][0]['tp_perm'])) { ?>
-        <li>
-          <a href="<?php echo BASE_URL; ?>Rol">
-            <div class="parent-icon"><i class='bx bx-shield-alt-2'></i>
-            </div>
-            <div class="menu-title">Roles y permisos</div>
-          </a>
-        </li>
-      <?php } ?>
+    <?php if (isset($_SESSION['permisoCompletoUsuario'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarUsuario'][0]['tp_perm'])) { ?>
 
       <li>
-        <a href="widgets.html">
-          <div class="parent-icon"><i class='bx bx-history'></i>
+        <a href="<?php echo BASE_URL; ?>Usuario">
+          <div class="parent-icon"><i class='bx bx-user'></i>
           </div>
-          <div class="menu-title">Log de acceso</div>
+          <div class="menu-title">Usuarios</div>
         </a>
       </li>
 
-      <?php if (isset($_SESSION['permisoCompletoEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarEstudiantes'][0]['tp_perm'])) { ?>
-        <li>
-          <a href="<?php echo BASE_URL; ?>Estudiante">
-            <div class="parent-icon"><i class='bx bx-id-card'></i>
-            </div>
-            <div class="menu-title">Estudiantes</div>
-          </a>
-        </li>
-      <?php } ?>
+    <?php } ?>
 
-
-      <?php if (isset($_SESSION['permisoCompletoSecciones'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarSecciones'][0]['tp_perm'])) { ?>
-        <li>
-          <a href="<?php echo BASE_URL; ?>Seccion">
-            <div class="parent-icon"><i class='bx bx-list-ol'></i>
-            </div>
-            <div class="menu-title">Secciones</div>
-          </a>
-        </li>
-      <?php } ?>
-
-      <?php if (isset($_SESSION['permisoCompletoAsistencias'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarAsistencias'][0]['tp_perm'])) { ?>
-        <li>
-          <a href="<?php echo BASE_URL; ?>AsistenciaComedor">
-            <div class="parent-icon"><i class='bx bx-task'></i>
-            </div>
-            <div class="menu-title">Historial Asistencia</div>
-          </a>
-        </li>
-      <?php } ?>
-
-      <?php if (isset($_SESSION['permisoCompletoQR'][0]['tp_perm'])) { ?>
-        <hr>
-
-        <li class="menu-label">QR</li>
-
-        <li>
-          <a href="<?php echo BASE_URL; ?>Qr">
-            <div class="parent-icon"><i class='bx bx-webcam'></i>
-            </div>
-            <div class="menu-title">Escanear QR</div>
-          </a>
-        </li>
-      <?php } ?>
-
-    </ul>
-    <!--end navigation-->
-    </div>
-    <!--end sidebar wrapper -->
-    <!--start header -->
-    <header>
-      <div class="topbar d-flex align-items-center">
-        <nav class="navbar navbar-expand gap-3">
-          <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+    <?php if (isset($_SESSION['permisoCompletoRoles'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarRoles'][0]['tp_perm'])) { ?>
+      <li>
+        <a href="<?php echo BASE_URL; ?>Rol">
+          <div class="parent-icon"><i class='bx bx-shield-alt-2'></i>
           </div>
+          <div class="menu-title">Roles y permisos</div>
+        </a>
+      </li>
+    <?php } ?>
 
-          <div class="top-menu ms-auto">
-            <ul class="navbar-nav align-items-center gap-1">
-              <li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="assets/images/county/06.png" width="22" alt="">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">English</span></a>
-                  </li>
-                  <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">Spanish</span></a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dark-mode d-none d-sm-flex">
-                <a class="nav-link dark-mode-icon" href="javascript:;"><i class='bx bx-moon'></i>
-                </a>
-              </li>
+    <li>
+      <a href="widgets.html">
+        <div class="parent-icon"><i class='bx bx-history'></i>
+        </div>
+        <div class="menu-title">Log de acceso</div>
+      </a>
+    </li>
 
-              <!-- <li class="nav-item dropdown dropdown-large">
+    <?php if (isset($_SESSION['permisoCompletoEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarEstudiantes'][0]['tp_perm'])) { ?>
+      <li>
+        <a href="<?php echo BASE_URL; ?>Estudiante">
+          <div class="parent-icon"><i class='bx bx-id-card'></i>
+          </div>
+          <div class="menu-title">Estudiantes</div>
+        </a>
+      </li>
+    <?php } ?>
+
+
+    <?php if (isset($_SESSION['permisoCompletoSecciones'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarSecciones'][0]['tp_perm'])) { ?>
+      <li>
+        <a href="<?php echo BASE_URL; ?>Seccion">
+          <div class="parent-icon"><i class='bx bx-list-ol'></i>
+          </div>
+          <div class="menu-title">Secciones</div>
+        </a>
+      </li>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['permisoCompletoAsistencias'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarAsistencias'][0]['tp_perm'])) { ?>
+      <li>
+        <a href="<?php echo BASE_URL; ?>AsistenciaComedor">
+          <div class="parent-icon"><i class='bx bx-task'></i>
+          </div>
+          <div class="menu-title">Historial Asistencia</div>
+        </a>
+      </li>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['permisoCompletoQR'][0]['tp_perm'])) { ?>
+      <hr>
+
+      <li class="menu-label">QR</li>
+
+      <li>
+        <a href="<?php echo BASE_URL; ?>Qr">
+          <div class="parent-icon"><i class='bx bx-webcam'></i>
+          </div>
+          <div class="menu-title">Escanear QR</div>
+        </a>
+      </li>
+    <?php } ?>
+
+  </ul>
+  <!--end navigation-->
+  </div>
+  <!--end sidebar wrapper -->
+  <!--start header -->
+  <header>
+    <div class="topbar d-flex align-items-center">
+      <nav class="navbar navbar-expand gap-3">
+        <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+        </div>
+
+        <div class="top-menu ms-auto">
+          <ul class="navbar-nav align-items-center gap-1">
+            <li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
+              <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="assets/images/county/06.png" width="22" alt="">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">English</span></a>
+                </li>
+                <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">Spanish</span></a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dark-mode d-none d-sm-flex">
+              <a class="nav-link dark-mode-icon" href="javascript:;"><i class='bx bx-moon'></i>
+              </a>
+            </li>
+
+            <!-- <li class="nav-item dropdown dropdown-large">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown"><span class="alert-count">7</span>
                   <i class='bx bx-bell'></i>
                 </a>
@@ -253,32 +253,32 @@
                 </div>
               </li> -->
 
-            </ul>
-          </div>
+          </ul>
+        </div>
 
-          <div class="user-box dropdown px-3">
-            <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <!-- <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar"> -->
-              <div class="user-info">
-                <p class="user-name mb-0 align-items-center"><?php echo $_SESSION['usuario'] ?></p>
-                <p class="designattion mb-0"><?php echo $_SESSION['correo'] ?></p>
-              </div>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
-              </li>
-              <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-cog fs-5"></i><span>Settings</span></a>
-              </li>
-              <li>
-                <div class="dropdown-divider mb-0"></div>
-              </li>
-              <li><a class="dropdown-item d-flex align-items-center" href="<?php echo BASE_URL; ?>Usuario/cerrarSesion"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
-              </li>
+        <div class="user-box dropdown px-3">
+          <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <!-- <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar"> -->
+            <div class="user-info">
+              <p class="user-name mb-0 align-items-center"><?php echo $_SESSION['usuario'] ?></p>
+              <p class="designattion mb-0"><?php echo $_SESSION['correo'] ?></p>
+            </div>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
+            </li>
+            <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-cog fs-5"></i><span>Settings</span></a>
+            </li>
+            <li>
+              <div class="dropdown-divider mb-0"></div>
+            </li>
+            <li><a class="dropdown-item d-flex align-items-center" href="<?php echo BASE_URL; ?>Usuario/cerrarSesion"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+            </li>
 
-              <!-- <a class="dropdown-item" href="<?php echo BASE_URL; ?>Perfil"> -->
-              <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cambiarPass"> -->
-              <!-- <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> -->
-              <!-- <i class="fas fa-user-lock fa-sm fa-fw mr-2 text-gray-400"></i>
+            <!-- <a class="dropdown-item" href="<?php echo BASE_URL; ?>Perfil"> -->
+            <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cambiarPass"> -->
+            <!-- <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> -->
+            <!-- <i class="fas fa-user-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cambiar contraseña
                 </a>
                 <div class="dropdown-divider"></div>
@@ -287,9 +287,9 @@
                   Cerrar sesión
                 </a> -->
 
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <!--end header -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!--end header -->

@@ -122,6 +122,6 @@
     </div>
   </div>
 </div>
-<script src="<?php echo BASE_URL; ?>Assets/js/modulos/roles/roles.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/modulos/roles/roles.js"></script>
 
 <?php include "Views/Templates/footer.php"; ?>

@@ -112,5 +112,5 @@ include "Views/Templates/header.php"; ?>
     </div>
   </div>
 </div>
-<script src="<?php echo BASE_URL; ?>Assets/js/modulos/secciones/secciones.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/modulos/secciones/secciones.js"></script>
 <?php include "Views/Templates/footer.php"; ?>
