@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.scanner-container {
+  position: relative;
+  max-width: 650px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+video {
+  width: 100%;
+  max-height: 500px;
+}
+
+.qr-result {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*  */
+
+@media (min-width: 768px) {
+  .scanner-container {
+    margin-left: 20%;
+    height: 73vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .scanner-container {
+    height: 33vh;
+    margin-bottom: 20vh;
+  }
+}
