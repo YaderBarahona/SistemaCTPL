@@ -192,13 +192,13 @@
 <script src="<?php echo BASE_URL; ?>assets/jquery-ui.js"></script>
 <script src="<?php echo BASE_URL; ?>assets/plugins/simplebar/js/simplebar.min.js"></script>
 <script src="<?php echo BASE_URL; ?>assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="<?php echo BASE_URL; ?>assets/plugins/chartjs/js/chart.js"></script>
 
 <script src="<?php echo BASE_URL; ?>assets/plugins/metismenu/js/metisMenu.min.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/plugins/chartjs/js/Chart.js"></script>
 
 <!--app JS-->
 <script src="<?php echo BASE_URL; ?>assets/js/app.js"></script>
-<script src="<?php echo BASE_URL; ?>assets/js/index.js"></script>
+<!-- <script src="<?php echo BASE_URL; ?>assets/js/index.js"></script> -->
 
 <script>
   const BASE_URL = "<?php echo BASE_URL; ?>";

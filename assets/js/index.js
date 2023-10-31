@@ -42,17 +42,6 @@ $(function () {
           borderRadius: 20,
           borderWidth: 0,
         },
-        {
-          label: "Mobiles",
-          data: [28, 48, 40, 19, 28, 48, 40, 19, 40, 19, 28, 48],
-          borderColor: gradientStroke2,
-          backgroundColor: gradientStroke2,
-          hoverBackgroundColor: gradientStroke2,
-          pointRadius: 0,
-          fill: false,
-          borderRadius: 20,
-          borderWidth: 0,
-        },
       ],
     },
 

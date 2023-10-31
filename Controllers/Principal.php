@@ -48,6 +48,10 @@ class Principal extends Controller
       $data['totalSecciones'] = $this->model->getTotalSecciones();
       $data['totalAsistencias'] = $this->model->getTotalAsistencias();
 
+      //data para el grafico
+      $data['dataAsistencia'] =
+        $this->model->getDataAsistencia();
+
       //accedemos a views y al metodo getview
       //pasando por parametros el controlador y el nombre de la vista
       //pasamos la variable data a la vista

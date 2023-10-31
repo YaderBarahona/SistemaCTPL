@@ -47,4 +47,19 @@ class PrincipalModel extends Query
     $data = $this->selectAll($sql);
     return $data;
   }
+
+  public function getDataAsistencia()
+  {
+    $sql = "SELECT MONTH(fec_asist) AS Mes, COUNT(*) AS TotalAsistencias
+    FROM asistencias_comedor
+    GROUP BY Mes";
+
+    // $sql = "SELECT DATE_FORMAT(fec_asist, '%Y-%m') AS Mes, COUNT(*) AS TotalAsistencias
+    // FROM asistencias_comedor
+    // GROUP BY Mes;
+    // ";
+
+    $data = $this->selectAll($sql);
+    return $data;
+  }
 }

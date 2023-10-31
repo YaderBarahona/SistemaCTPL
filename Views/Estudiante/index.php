@@ -45,6 +45,7 @@ include "Views/Templates/header.php"; ?>
       </div>
       <div class="card-body">
         <div class="table-responsive">
+          <!-- <button id="exportarWord">Exportar a Word</button> -->
           <table class="table table-bordered" id="tblEstudiantes" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -157,4 +158,6 @@ include "Views/Templates/header.php"; ?>
   </div>
 </div>
 <script src="<?php echo BASE_URL; ?>assets/js/modulos/estudiantes/estudiantes.js"></script>
+<!-- <script src="<?php echo BASE_URL; ?>assets/js/modulos/estudiantes/word.js"></script> -->
+
 <?php include "Views/Templates/footer.php"; ?>
