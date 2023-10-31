@@ -55,6 +55,14 @@ body {
   color: white;
 }
 
+#my-signin2 {
+  width: 75%;
+  margin: auto;
+  /* border: solid thin white; */
+  /* padding: .7rem; */
+  cursor: pointer;
+}
+
 .formulario input::placeholder {
   color: white;
   font-size: 1em;

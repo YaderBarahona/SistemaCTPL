@@ -2,6 +2,18 @@
 <link rel="stylesheet" href="<?php echo BASE_URL ?>assets/css/modulos/checkbox4.css">
 <div class="page-wrapper">
   <div class="page-content">
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3">Permisos</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item active" aria-current="page">Gestión</li>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Roles y permisos</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
     <div class="col-md-9 mx-auto">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">

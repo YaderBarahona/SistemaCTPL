@@ -12,6 +12,7 @@ const btnEditarSeccion = document.getElementById("btnEditarSeccion");
 const btnEliminarSeccion = document.getElementById("btnEliminarSeccion");
 
 document.addEventListener("DOMContentLoaded", () => {
+  let defaultDatatableLeng = localStorage.getItem("datatableLeng");
   let permisoReporteSeccion = document.getElementById(
     "permisoReporteSeccion"
   ).value;
@@ -111,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-5'i><'col-sm-7'p>>",
     language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json",
+      url: defaultDatatableLeng,
       searchPlaceholder: "Sección o ID",
     },
     buttons: buttons,
@@ -122,8 +123,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //evento al darle click al boton de nuevo en la vista estudiante
 btnNuevaSeccion.addEventListener("click", () => {
-  document.getElementById("title_modal").innerHTML = "Nueva sección";
-  btnModal.innerHTML = "Registrar";
+  let defaultLang = localStorage.getItem("lang");
+
+  //labels
+  // Obtener el texto del Label
+  let labelTextSection = document.querySelector(
+    'label[for="inputSec"]'
+  ).innerText;
+
+  if (defaultLang == "es") {
+    document.getElementById("title_modal").innerHTML = "Nueva sección";
+    btnModal.innerHTML = "Agregar";
+    document
+      .getElementById("inputSec")
+      .setAttribute("placeholder", labelTextSection);
+  } else {
+    document.getElementById("title_modal").innerHTML = "New Section";
+    btnModal.innerHTML = "Add";
+    document
+      .getElementById("inputSec")
+      .setAttribute("placeholder", labelTextSection);
+  }
+
   frmSeccion.reset();
   //jquery
   //abrir modal mediante el id del modal para agregar usuario

@@ -108,6 +108,8 @@ class Usuario extends Controller
           $_SESSION['activo'] = true;
           $_SESSION['rol_usuario'] = $data2['rol_id'];
 
+          // $_SESSION['last_activity'] = time();
+
           //guardando permisos en las sesiones
 
           //
@@ -272,6 +274,10 @@ class Usuario extends Controller
 
     $id = $_POST['id_hidden'];
 
+    $USUARIO_HIDDEN = $_POST['USUARIO_HIDDEN'];
+
+    $CORREO_HIDDEN = $_POST['CORREO_HIDDEN'];
+
     $hash = hash("SHA256", $password);
 
     if (empty($usuario) || empty($correo) || empty($password) || empty($confirmPassword)) {
@@ -288,15 +294,14 @@ class Usuario extends Controller
           $msg = "Las contraseñas no coinciden";
         } else {
           $data = $this->model->insertarUsuario($usuario, $correo, $hash, $selectRol);
-          if ($data == "OK") {
-            // $msg = "Usuario registrado con éxito";
+          if ($data == "EXISTE_USUARIO") {
+            $msg = "EXISTE_USUARIO";
+          } else if ($data == "EXISTE_CORREO") {
+            $msg = "EXISTE_CORREO";
+          } else if($data == "OK"){
             $msg = "OK";
-          } else if ($data == "existe") {
-            $msg = "El usuario ya existe";
-            // $msg = "existe";
           } else {
-            $msg = "Error al registrar el usuario";
-            // $msg = "error";
+            $msg = "ERROR";
           }
         }
       } else {
@@ -305,16 +310,15 @@ class Usuario extends Controller
         } else if (!preg_match($patronCorreo, $correo)) {
           $msg = "El correo eléctronico permite ingresar entre 8 y 50 caracteres ademas debe contener el simbolo de arroba '@' seguido del dominio y por ultimo una extensión (.com,.co,etc).";
         } else {
-          $data = $this->model->actualizarUsuario2($usuario, $correo, $id, $selectRol);
-          if ($data == "MODIFICADO") {
-            // $msg = "Usuario registrado con éxito";
+          $data = $this->model->actualizarUsuario2($usuario, $correo, $id, $selectRol, $USUARIO_HIDDEN, $CORREO_HIDDEN);
+          if ($data == "EXISTE_USUARIO") {
+            $msg = "EXISTE_USUARIO";
+          } else if($data == "EXISTE_CORREO"){
+            $msg = "EXISTE_CORREO";
+          } else if($data == "MODIFICADO"){
             $msg = "MODIFICADO";
-            // } else if ($data == "existe") {
-            //   $msg = "El usuario ya existe";
-            //   // $msg = "existe";
           } else {
-            $msg = "Error al modificar el usuario";
-            // $msg = "error";
+            $msg = "ERROR";
           }
         }
       }
@@ -417,9 +421,17 @@ class Usuario extends Controller
 
     $patron = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,100}$/';
 
+    // if(isset($passActual)){
+    //   print_r("Definida");
+    // } else {
+    //   print_r("No Definida");
+
+    // }
+
     //verificar si lo que se esta enviando mediante post en los inputs del formulario estan vacios
     if (empty($passActual) || empty($passNueva) || empty($passConfirm)) {
       $msg = "Campos vacíos";
+      
     } else {
       if (!preg_match($patron, $passNueva)) {
         $msg = "La contraseña debe contener una letra minúscula, una letra mayúscula, un dígito, un carácter especial ademas la longitud mínima es de 8 caracteres y la longitud máxima es de 100 caracteres.";
@@ -594,6 +606,100 @@ class Usuario extends Controller
       $msg = "ERROR3";
     }
     // }
+
+    echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+    die();
+  }
+
+  // function gmail()
+  // {
+
+  //   // Configuración de la API
+  //   $client = new Google_Client(['client_id' => '852842117575-dhnj541v1q5mo34gi6qfldejpj7mgfi9.apps.googleusercontent.com']);
+  //   $client->setAuthConfig(BASE_URL . 'assets/js/modulos/credenciales.json'); // Reemplaza con la ubicación de tus credenciales JSON
+
+  //   // Verifica el token
+  //   $token = $_POST['id_token']; // Obtén el token de la petición POST
+
+  //   try {
+  //     $payload = $client->verifyIdToken($token);
+  //     if ($payload) {
+  //       $email = $payload['email'];
+
+  //       // Verifica si el correo tiene el dominio de Gmail y si está en tu base de datos
+  //       if (filter_var($email, FILTER_VALIDATE_EMAIL) && strpos($email, '@gmail.com') !== false) {
+  //         // El correo tiene el dominio de Gmail, procede a iniciar sesión o registrar al usuario
+  //         // Puedes redirigir al usuario a una página de bienvenida o realizar otras acciones según tu lógica de aplicación
+  //         // También puedes establecer una sesión o cookie para mantener al usuario autenticado
+  //         echo "Inicio de sesión exitoso!";
+  //       } else {
+  //         echo "El correo no cumple con los criterios de autenticación.";
+  //       }
+  //     }
+  //   } catch (Exception $e) {
+  //     echo 'Excepción: ' . $e->getMessage();
+  //   }
+  // }
+
+  function perfil()
+  {
+    $id_usuario = $_SESSION['id_usuario'];
+
+    $data = $this->model->getPerfil($id_usuario);
+
+    //verificamos si la sesion esta iniciada
+    if (empty($_SESSION['activo'])) {
+      header("location: " . BASE_URL . "Principal");
+    }
+
+    $this->views->getView($this, "perfil", $data);
+  }
+
+  function listaTareas()
+  {
+    //verificamos si la sesion esta iniciada
+    if (empty($_SESSION['activo'])) {
+      header("location: " . BASE_URL . "Principal");
+    }
+
+    $this->views->getView($this, "lista-tareas");
+  }
+
+  function updatePerfil()
+  {
+    //almacenamos los valores en variables
+    $usuario = $_POST['inputUsuario'];
+    $patronUser = '/^[a-zA-Z0-9\_\-]{5,30}$/';
+
+    $correo = $_POST['inputCorreo'];
+    $patronCorreo = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-]{1,61}[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,63}$/';
+
+    $id = $_POST['id_hidden'];
+
+    $USUARIO_HIDDEN = $_POST['USUARIO_HIDDEN'];
+
+    $CORREO_HIDDEN = $_POST['CORREO_HIDDEN'];
+
+    if (empty($usuario) || empty($correo)) {
+      $msg = "Todos los campos son obligatorios";
+    } else {
+      if (!preg_match($patronUser, $usuario)) {
+        $msg = "El campo usuario permite ingresar entre 5 y 30 caracteres, solo admite letras, numeros, guion y guion bajo, no se permiten carácteres especiales ni espacios.";
+      } else if (!preg_match($patronCorreo, $correo)) {
+        $msg = "El correo eléctronico permite ingresar entre 8 y 50 caracteres ademas debe contener el simbolo de arroba '@' seguido del dominio y por ultimo una extensión (.com,.co,etc).";
+      } else {
+        $data = $this->model->updatePerfil($usuario, $correo, $id, $USUARIO_HIDDEN, $CORREO_HIDDEN);
+        if ($data == "EXISTE_USUARIO") {
+          $msg = "EXISTE_USUARIO";
+        } else if($data == "EXISTE_CORREO"){
+          $msg = "EXISTE_CORREO";
+        } else if($data == "MODIFICADO"){
+          $msg = "MODIFICADO";
+        } else {
+          $msg = "ERROR";
+        }
+      }
+    }
 
     echo json_encode($msg, JSON_UNESCAPED_UNICODE);
     die();

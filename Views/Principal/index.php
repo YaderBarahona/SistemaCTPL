@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">Usuarios</p>
+                                <p class="mb-0 text-secondary users">Usuarios</p>
                                 <h4 class="my-1 text-info"><?php $count = $data['totalUsuarios'][0]['count(*)'];
                                                             echo $count; ?></h4>
                             </div>
@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">Estudiantes</p>
+                                <p class="mb-0 text-secondary students">Estudiantes</p>
                                 <h4 class="my-1 text-danger"><?php $count = $data['totalEstudiantes'][0]['count(*)'];
                                                                 echo $count; ?></h4>
                             </div>
@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">Secciones</p>
+                                <p class="mb-0 text-secondary sections">Secciones</p>
                                 <h4 class="my-1 text-success"><?php $count = $data['totalSecciones'][0]['count(*)'];
                                                                 echo $count; ?></h4>
                             </div>
@@ -54,7 +54,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">Asistencias</p>
+                                <p class="mb-0 text-secondary assists">Asistencias</p>
                                 <h4 class="my-1 text-warning"><?php $count = $data['totalAsistencias'][0]['count(*)'];
                                                                 echo $count; ?></h4>
                             </div>
@@ -66,7 +66,7 @@
             </div>
         </div><!--end row-->
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-lg-8 d-flex">
                 <div class="card radius-10 w-100">
                     <div class="card-header">
@@ -163,7 +163,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!--end row-->
 

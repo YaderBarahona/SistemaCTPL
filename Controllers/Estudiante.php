@@ -13,6 +13,8 @@ class Estudiante extends Controller
       header("location: " . BASE_URL);
     }
 
+
+
     //cargamos constructor de la instancia (de la vista)
     parent::__construct();
   }
@@ -129,37 +131,19 @@ class Estudiante extends Controller
         if ($id == '') {
           $data = $this->model->postEstudiante($ced, $nombre, $pa, $sa, $seccion);
           if ($data == "OK") {
-            // $msg = "OK";
-            // $msg = "Usuario registrado con éxito";
-
             $msg = array('msg' => '¡Estudiante registrado con éxito!', 'icono' => 'success');
           } else if ($data == "EXISTE") {
-            // $msg = "existe";
-            // $msg = "El usuario ya existe";
-
             $msg = array('msg' => '¡Ya existe un estudiante con la misma cédula!', 'icono' => 'error');
           } else {
-            // $msg = "error";
-            // $msg = "Error al registrar el usuario";
-
             $msg = array('msg' => 'Error al registrar el estudiante', 'icono' => 'error');
           }
         } else {
           $data = $this->model->updateEstudiante($ced, $nombre, $pa, $sa, $seccion, $id, $ced_hidden);
           if ($data == "MODIFICADO") {
-            // $msg = "MODIFICADO";
-            // $msg = "Usuario registrado con éxito";
-
             $msg = array('msg' => '¡Estudiante modificado con éxito!', 'icono' => 'success');
           } else if ($data == "EXISTE") {
-            // $msg = "existe";
-            // $msg = "El usuario ya existe";
-
             $msg = array('msg' => '¡Ya existe un estudiante con la misma cédula!', 'icono' => 'error');
           } else {
-            // $msg = "error";
-            // $msg = "Error al modificar el usuario";
-
             $msg = array('msg' => 'Error al modificar el estudiante', 'icono' => 'error');
           }
         }

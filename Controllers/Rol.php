@@ -100,7 +100,7 @@ class Rol extends Controller
     $patron_tipo = '/^[a-zA-ZÀ-ÿ\s\_\-]{1,30}$/u';
 
     $descripcion = $_POST['inputDescripcion'];
-    $patron_descripcion = '/^[a-zA-ZÀ-ÿ\s\_\-\,]{1,100}$/u';
+    $patron_descripcion = '/^[a-zA-ZÀ-ÿ\s\_\-\,\.]{1,100}$/u';
 
     $id = $_POST['id_rol_hidden'];
 

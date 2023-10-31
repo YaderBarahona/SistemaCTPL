@@ -4,13 +4,18 @@ include "Views/Templates/header.php"; ?>
 <div class="page-wrapper">
   <div class="page-content">
 
-    <!-- Page Heading -->
-
-    <!-- <h1 class="h3 mb-2 text-gray-800">Tabla</h1> -->
-
-    <!-- <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Usuarios</li>
-  </ol> -->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3 sections">Secciones</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item active management" aria-current="page">Gestión</li>
+            </li>
+            <li class="breadcrumb-item active sections" aria-current="page">Secciones</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
     <?php
     if (isset($data['permisoCrearSeccion']) && is_array($data['permisoCrearSeccion']) && isset($data['permisoCrearSeccion'][0]['tp_perm'])) {
@@ -29,14 +34,14 @@ include "Views/Templates/header.php"; ?>
     <?php
     if (!empty($permisoCrearSeccion) || !empty($permisoGlobalSeccion)) {
     ?>
-      <button id="btnNuevaSeccion" class="btn btn-primary mb-2 boton" type="button">Nueva <i class="fas fa-plus"></i></i></i> </button>
+      <button id="btnNuevaSeccion" class="btn btn-primary mb-2 boton new" type="button">Nueva <i class="fas fa-plus"></i></i></i> </button>
 
     <?php } ?>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-6">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Secciones</h6>
+        <h6 class="m-0 font-weight-bold text-primary text-center sections">Secciones</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -91,11 +96,11 @@ include "Views/Templates/header.php"; ?>
             <div class="form-group formulario__grupo-input">
               <input type="hidden" id="id_hidden_seccion" name="id_hidden_seccion">
               <input type="hidden" id="SEC_hidden" name="SEC_hidden">
-              <label for="inputSec" class="formulario__label">Sección</label>
+              <label for="inputSec" class="formulario__label section">Sección</label>
               <input id="inputSec" class="form-control formulario__input" type="text" name="inputSec" placeholder="Sección">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo sección permite ingresar de 3 a 5 caracteres y solo puede contener números y debe incluir guion entre los números (1-2 caracteres antes y despues del guion).</p>
+            <p class="formulario__input-error sectionValidation">El campo sección permite ingresar de 3 a 5 caracteres y solo puede contener números y debe incluir guion entre los números (1-2 caracteres antes y despues del guion).</p>
           </div>
 
           <!--  -->
@@ -105,7 +110,7 @@ include "Views/Templates/header.php"; ?>
           <!--  -->
           <div class="d-grid gap-2">
             <button id="btnModal" class="btn btn-primary btn-block formulario__btn boton" type="submit">Registrar</button>
-            <button id="btnModal2" class="btn btn-danger btn-block formulario__btn2 boton" type="button">Cancelar</button>
+            <button id="btnModal2" class="btn btn-danger btn-block formulario__btn2 boton cancel" type="button">Cancelar</button>
           </div>
         </form>
       </div>

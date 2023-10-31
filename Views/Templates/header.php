@@ -74,7 +74,7 @@
         <a href="<?php echo BASE_URL; ?>Principal">
           <div class="parent-icon"><i class='bx bx-home'></i>
           </div>
-          <div class="menu-title">Panel</div>
+          <div class="menu-title" id="dashboard">Panel</div>
         </a>
       </li>
     <?php } ?>
@@ -115,7 +115,7 @@
         </li> -->
 
     <?php if (isset($_SESSION['permisoCompletoUsuario'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarUsuario'][0]['tp_perm']) || isset($_SESSION['permisoCompletoRoles'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarRoles'][0]['tp_perm']) || isset($_SESSION['permisoCompletoEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarEstudiantes'][0]['tp_perm']) || isset($_SESSION['permisoCompletoSecciones'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarSecciones'][0]['tp_perm']) || isset($_SESSION['permisoCompletoAsistencias'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarAsistencias'][0]['tp_perm'])) { ?>
-      <li class="menu-label">Gestión</li>
+      <li class="menu-label management">Gestión</li>
     <?php } ?>
 
     <?php if (isset($_SESSION['permisoCompletoUsuario'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarUsuario'][0]['tp_perm'])) { ?>
@@ -124,7 +124,7 @@
         <a href="<?php echo BASE_URL; ?>Usuario">
           <div class="parent-icon"><i class='bx bx-user'></i>
           </div>
-          <div class="menu-title">Usuarios</div>
+          <div class="menu-title users">Usuarios</div>
         </a>
       </li>
 
@@ -135,16 +135,16 @@
         <a href="<?php echo BASE_URL; ?>Rol">
           <div class="parent-icon"><i class='bx bx-shield-alt-2'></i>
           </div>
-          <div class="menu-title">Roles y permisos</div>
+          <div class="menu-title rp">Roles y Permisos</div>
         </a>
       </li>
     <?php } ?>
 
     <li>
-      <a href="widgets.html">
+      <a href="<?php echo BASE_URL; ?>Log">
         <div class="parent-icon"><i class='bx bx-history'></i>
         </div>
-        <div class="menu-title">Log de acceso</div>
+        <div class="menu-title al">Registro de acceso</div>
       </a>
     </li>
 
@@ -153,7 +153,7 @@
         <a href="<?php echo BASE_URL; ?>Estudiante">
           <div class="parent-icon"><i class='bx bx-id-card'></i>
           </div>
-          <div class="menu-title">Estudiantes</div>
+          <div class="menu-title students">Estudiantes</div>
         </a>
       </li>
     <?php } ?>
@@ -164,17 +164,17 @@
         <a href="<?php echo BASE_URL; ?>Seccion">
           <div class="parent-icon"><i class='bx bx-list-ol'></i>
           </div>
-          <div class="menu-title">Secciones</div>
+          <div class="menu-title sections">Secciones</div>
         </a>
       </li>
     <?php } ?>
 
     <?php if (isset($_SESSION['permisoCompletoAsistencias'][0]['tp_perm']) || isset($_SESSION['permisoParcialMostrarAsistencias'][0]['tp_perm'])) { ?>
       <li>
-        <a href="<?php echo BASE_URL; ?>AsistenciaComedor">
+        <a href="<?php echo BASE_URL; ?>Asistencia">
           <div class="parent-icon"><i class='bx bx-task'></i>
           </div>
-          <div class="menu-title">Historial Asistencia</div>
+          <div class="menu-title ah">Historial Asistencia</div>
         </a>
       </li>
     <?php } ?>
@@ -188,7 +188,7 @@
         <a href="<?php echo BASE_URL; ?>Qr">
           <div class="parent-icon"><i class='bx bx-webcam'></i>
           </div>
-          <div class="menu-title">Escanear QR</div>
+          <div class="menu-title" id="SQR">Escanear QR</div>
         </a>
       </li>
     <?php } ?>
@@ -206,18 +206,18 @@
 
         <div class="top-menu ms-auto">
           <ul class="navbar-nav align-items-center gap-1">
-            <li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
-              <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="assets/images/county/06.png" width="22" alt="">
+            <li class="nav-item dropdown dropdown-laungauge d-sm-flex">
+              <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown"><img id="pickerLenguaje" src="<?php echo BASE_URL; ?>assets/images/county/spanish.png" width="22" alt="">
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">English</span></a>
+                <li><button class="dropdown-item d-flex align-items-center py-2" id="changeToEnglish"><img src="<?php echo BASE_URL; ?>assets/images/county/english.png" width="20" alt=""><span class="ms-2">English</span></button>
                 </li>
-                <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">Spanish</span></a>
+                <li><button class="dropdown-item d-flex align-items-center py-2" id="changeToSpanish"><img src="<?php echo BASE_URL; ?>assets/images/county/spanish.png" width="20" alt=""><span class="ms-2">Español</span></button>
                 </li>
               </ul>
             </li>
-            <li class="nav-item dark-mode d-none d-sm-flex">
-              <a class="nav-link dark-mode-icon" href="javascript:;"><i class='bx bx-moon'></i>
+            <li class="nav-item dark-mode d-sm-flex">
+              <a class="nav-link dark-mode-icon" href="javascript:;" id="changeTheme"><i class='bx bx-moon'></i>
               </a>
             </li>
 
@@ -258,21 +258,21 @@
 
         <div class="user-box dropdown px-3">
           <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <!-- <img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar"> -->
+            <img src="<?php echo BASE_URL; ?>assets/images/avatars/usuario.png" class="user-img" alt="user avatar">
             <div class="user-info">
               <p class="user-name mb-0 align-items-center"><?php echo $_SESSION['usuario'] ?></p>
               <p class="designattion mb-0"><?php echo $_SESSION['correo'] ?></p>
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
+            <li><a class="dropdown-item d-flex align-items-center" href="<?php echo BASE_URL; ?>Usuario/perfil"><i class="bx bx-user fs-5"></i><span class="profile">Perfil</span></a>
             </li>
-            <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-cog fs-5"></i><span>Settings</span></a>
+            <li><a class="dropdown-item d-flex align-items-center" href="<?php echo BASE_URL; ?>Usuario/listaTareas"><i class="bx bx-list-check fs-5"></i><span class="taskList">Lista de tareas</span></a>
             </li>
             <li>
               <div class="dropdown-divider mb-0"></div>
             </li>
-            <li><a class="dropdown-item d-flex align-items-center" href="<?php echo BASE_URL; ?>Usuario/cerrarSesion"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+            <li><a id="btnLogout" class="dropdown-item d-flex align-items-center" href="<?php echo BASE_URL; ?>Usuario/cerrarSesion"><i class="bx bx-log-out-circle"></i><span class="logout">Cerrar sesión</span></a>
             </li>
 
             <!-- <a class="dropdown-item" href="<?php echo BASE_URL; ?>Perfil"> -->

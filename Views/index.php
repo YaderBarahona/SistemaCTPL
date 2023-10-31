@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/modulos/btn.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/modulos/boton.css">
 
+  <meta name="google-signin-client_id" content="852842117575-dhnj541v1q5mo34gi6qfldejpj7mgfi9.apps.googleusercontent.com">
   <title>Iniciar Sesión</title>
 </head>
 
@@ -26,6 +27,7 @@
   <div class="container-form sign-in">
     <form class="formulario" id="frmLogin">
       <h2 class="create-account">¡Bienvenido!</h2>
+      <input type="hidden" name="tipo_acceso" value="Inicio de sesión">
       <input type="text" class="form-control form-control-user" id="inputUser" name="inputUser" aria-describedby="emailHelp" placeholder="Nombre de usuario">
       <input type="password" class="form-control form-control-user" id="inputPassword" name="inputPassword" placeholder="Contraseña">
       <!-- <input type="submit" class="login-btn" id="btnLogin" value="Iniciar Sesión" onclick="frmLogin(event);"> -->
@@ -34,8 +36,11 @@
       <!-- <a type="submit" class="boton" id="btnLogin" value="Iniciar Sesión" onclick="frmLogin(event);">Iniciar sesion</a> -->
       <!-- <button type="submit" class="btn btn-primary boton" id="btnLogin" onclick="frmLogin(event);">Iniciar sesion</button> -->
       <!-- <br> -->
+
+      <!-- <hr style="border-style: inset; border-width: 1px;">
+      <div id="my-signin2"></div>
       <div id="content">
-      </div>
+      </div> -->
 
       <hr style="border-style: inset; border-width: 1px;">
       <!-- <br> -->
@@ -44,6 +49,30 @@
       </div>
     </form>
   </div>
+
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+
+    function onFailure(error) {
+      console.log(error);
+    }
+
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 280,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
   <script src="<?php echo BASE_URL; ?>assets/js/jquery.min.js"></script>
   <!-- <script src="<?php echo BASE_URL; ?>assets/jquery-3.7.1.min.js"></script> -->

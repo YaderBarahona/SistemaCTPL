@@ -12,6 +12,7 @@ const btnEditarEstudiante = document.getElementById("btnEditarEstudiante");
 const btnEliminarEstudiante = document.getElementById("btnEliminarEstudiante");
 
 document.addEventListener("DOMContentLoaded", () => {
+  let defaultDatatableLeng = localStorage.getItem("datatableLeng");
   let permisoReporteEstudiante = document.getElementById(
     "permisoReporteEstudiante"
   ).value;
@@ -20,23 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "permisoGlobalEstudiante"
   ).value;
 
-  let buttons = [
-    // ... otros botones ...
-  ];
+  let buttons = [];
 
   if (permisoReporteEstudiante != "" || permisoGlobalEstudiante != "") {
     buttons.push(
       {
-        //Botón para Excel
         extend: "excelHtml5",
         footer: true,
-        title: "Reporte de usuarios",
-        filename: "Reporte de usuarios",
+        title: "Reporte de estudiantes",
+        filename: "Reporte de estudiantes",
 
-        //Aquí es donde generas el botón personalizado
         text: '<span class="badge bg-success"><i class="fas fa-file-excel"></i></span>',
       },
-      //Botón para PDF
       {
         extend: "pdfHtml5",
         //text: "Save as PDF",
@@ -44,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
         orientation: "landscape",
         download: "open",
         footer: true,
-        title: "Reporte de usuarios",
-        filename: "Reporte de usuarios",
+        title: "Reporte de estudiantes",
+        filename: "Reporte de estudiantes",
         text: '<span class="badge  bg-danger"><i class="fas fa-file-pdf"></i></span>',
         // exportOptions: {
         //   columns: [0, ":visible"],
@@ -54,12 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
           columns: [0, 1, 2, 3, 4, 5],
         },
       },
-      //Botón para copiar
       {
         extend: "copyHtml5",
         footer: true,
-        title: "Reporte de usuarios",
-        filename: "Reporte de usuarios",
+        title: "Reporte de estudiantes",
+        filename: "Reporte de estudiantes",
         text: '<span class="badge  bg-primary"><i class="fas fa-copy"></i></span>',
         // exportOptions: {
         //   columns: [0, ":visible"],
@@ -68,14 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
           columns: [0, 1, 2, 3, 4, 5],
         },
       },
-      //Botón para print
       {
         extend: "print",
         footer: true,
         filename: "Export_File_print",
         text: '<span class="badge bg-dark"><i class="fas fa-print"></i></span>',
       },
-      //Botón para cvs
       {
         extend: "csvHtml5",
         footer: true,
@@ -123,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-5'i><'col-sm-7'p>>",
     language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json",
+      url: defaultDatatableLeng,
     },
 
     buttons: buttons,
@@ -134,8 +127,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //evento al darle click al boton de nuevo en la vista estudiante
 btnNuevoEstudiante.addEventListener("click", () => {
-  document.getElementById("title_modal").innerHTML = "Nuevo estudiante";
-  document.getElementById("btnModal").innerHTML = "Registrar";
+  let defaultLang = localStorage.getItem("lang");
+
+  //labels
+  // Obtener el texto del Label
+  let labelTextCed = document.querySelector('label[for="inputCed"]').innerText;
+  let labelTextNombre = document.querySelector(
+    'label[for="inputNombre"]'
+  ).innerText;
+  let labelTextPa = document.querySelector('label[for="inputPa"]').innerText;
+  let labelTextSa = document.querySelector('label[for="inputSa"]').innerText;
+
+  if (defaultLang == "es") {
+    document.getElementById("title_modal").innerHTML = "Nuevo Estudiante";
+    document.getElementById("btnModal").innerHTML = "Agregar";
+    document
+      .getElementById("inputCed")
+      .setAttribute("placeholder", labelTextCed);
+    document
+      .getElementById("inputNombre")
+      .setAttribute("placeholder", labelTextNombre);
+    document.getElementById("inputPa").setAttribute("placeholder", labelTextPa);
+
+    document.getElementById("inputSa").setAttribute("placeholder", labelTextSa);
+  } else {
+    document.getElementById("title_modal").innerHTML = "New Student";
+    document.getElementById("btnModal").innerHTML = "Add";
+    document
+      .getElementById("inputCed")
+      .setAttribute("placeholder", labelTextCed);
+    document
+      .getElementById("inputNombre")
+      .setAttribute("placeholder", labelTextNombre);
+    document.getElementById("inputPa").setAttribute("placeholder", labelTextPa);
+
+    document.getElementById("inputSa").setAttribute("placeholder", labelTextSa);
+  }
+
   document.getElementById("frmEstudiante").reset();
   //jquery
   //abrir modal mediante el id del modal para agregar usuario

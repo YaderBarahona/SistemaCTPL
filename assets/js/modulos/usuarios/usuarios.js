@@ -8,6 +8,7 @@ const btnModal2 = document.getElementById("btnModal2");
 const inputs = document.querySelectorAll("#frmUsuario input");
 
 document.addEventListener("DOMContentLoaded", () => {
+  let defaultDatatableLeng = localStorage.getItem("datatableLeng");
   let permisoReporteUsuario = document.getElementById(
     "permisoReporteUsuario"
   ).value;
@@ -23,16 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (permisoReporteUsuario != "" || permisoGlobalUsuario != "") {
     buttons.push(
       {
-        //Botón para Excel
         extend: "excelHtml5",
         footer: true,
         title: "Reporte de usuarios",
         filename: "Reporte de usuarios",
 
-        //Aquí es donde generas el botón personalizado
         text: '<span class="badge bg-success"><i class="fas fa-file-excel"></i></span>',
       },
-      //Botón para PDF
       {
         extend: "pdfHtml5",
         //text: "Save as PDF",
@@ -50,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
           columns: [0, 1, 2, 3, 4, 5, 6],
         },
       },
-      //Botón para copiar
       {
         extend: "copyHtml5",
         footer: true,
@@ -64,14 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
           columns: [0, 1, 2, 3, 4, 5, 6],
         },
       },
-      //Botón para print
       {
         extend: "print",
         footer: true,
         filename: "Export_File_print",
         text: '<span class="badge bg-dark"><i class="fas fa-print"></i></span>',
       },
-      //Botón para cvs
       {
         extend: "csvHtml5",
         footer: true,
@@ -122,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-5'i><'col-sm-7'p>>",
     language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json",
+      url: defaultDatatableLeng,
     },
     buttons: buttons,
     responsive: true,
@@ -189,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById(`grupo__${campo}`)
         .classList.remove("formulario__grupo-correcto");
 
-      console.log(document.querySelector(`#grupo__${campo} `));
+      // console.log(document.querySelector(`#grupo__${campo} `));
 
       document
         .querySelector(`#grupo__${campo} svg`)
@@ -320,8 +315,58 @@ btnModal2.addEventListener("click", () => {
 });
 
 function abrirModal() {
-  document.getElementById("title_modal").innerHTML = "Nuevo usuario";
-  document.getElementById("btnModal").innerHTML = "Registrar";
+  let defaultLang = localStorage.getItem("lang");
+
+  //labels
+  // Obtener el texto del Label
+  let labelTextUser = document.querySelector(
+    'label[for="inputUsuario"]'
+  ).innerText;
+  let labelTexEmail = document.querySelector(
+    'label[for="inputCorreo"]'
+  ).innerText;
+  let labelTextPassword = document.querySelector(
+    'label[for="inputPassword"]'
+  ).innerText;
+  let labelTextConfirm = document.querySelector(
+    'label[for="inputConfirmPassword"]'
+  ).innerText;
+
+  //verificar el lenguaje del localstorage para cambiar la leyenda
+  if (defaultLang == "es") {
+    document.getElementById("title_modal").innerHTML = "Nuevo Usuario";
+    document.getElementById("btnModal").innerHTML = "Agregar";
+    // Establecer el valor del placeholder con el texto del Label
+    document
+      .getElementById("inputUsuario")
+      .setAttribute("placeholder", labelTextUser);
+    document
+      .getElementById("inputCorreo")
+      .setAttribute("placeholder", labelTexEmail);
+    document
+      .getElementById("inputPassword")
+      .setAttribute("placeholder", labelTextPassword);
+    document
+      .getElementById("inputConfirmPassword")
+      .setAttribute("placeholder", labelTextConfirm);
+  } else {
+    document.getElementById("title_modal").innerHTML = "New User";
+    document.getElementById("btnModal").innerHTML = "Add";
+    // Establecer el valor del placeholder con el texto del Label
+    document
+      .getElementById("inputUsuario")
+      .setAttribute("placeholder", labelTextUser);
+    document
+      .getElementById("inputCorreo")
+      .setAttribute("placeholder", labelTexEmail);
+    document
+      .getElementById("inputPassword")
+      .setAttribute("placeholder", labelTextPassword);
+    document
+      .getElementById("inputConfirmPassword")
+      .setAttribute("placeholder", labelTextConfirm);
+  }
+
   document.getElementById("frmUsuario").reset();
   document.getElementById("contraseñas").classList.remove("d-none");
   //jquery
@@ -406,8 +451,12 @@ function frmRegistrarUser(e) {
           frm.reset();
           $("#nuevo_usuario").modal("hide");
           tblUsuarios.ajax.reload();
+        } else if (res == "EXISTE_USUARIO") {
+          alerta("¡El nombre de usuario ya existe!, por favor digita uno diferente", "", "warning");
+        } else if (res == "EXISTE_CORREO") {
+          alerta("¡El correo ya existe asociado a un usuario!, por favor digita uno diferente", "", "warning");
         } else if (res == "MODIFICADO") {
-          alerta("Usuario modificado con éxito!", "", "success");
+          alerta("¡Usuario modificado con éxito!", "", "success");
           $("#nuevo_usuario").modal("hide");
           tblUsuarios.ajax.reload();
         } else {
@@ -441,6 +490,9 @@ function btnEditarUser(id) {
       const res = JSON.parse(this.responseText);
 
       document.getElementById("id_hidden").value = res.us_id;
+
+      document.getElementById("USUARIO_HIDDEN").value = res.nom_us;
+      document.getElementById("CORREO_HIDDEN").value = res.cor_us;
 
       document.getElementById("inputUsuario").value = res.nom_us;
       document.getElementById("inputCorreo").value = res.cor_us;

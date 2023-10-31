@@ -1,5 +1,49 @@
 $(function () {
   "use strict";
+
+  function changeIcon(icon) {
+    localStorage.setItem("icon", icon);
+  }
+
+  function changeTheme(theme) {
+    if (theme === "toggle") {
+      theme = $("html").hasClass("dark-theme") ? "light-theme" : "dark-theme";
+    }
+
+    $("html").attr("class", theme);
+
+    localStorage.setItem("theme", theme);
+  }
+
+  $(document).ready(function () {
+    let defaultTheme = localStorage.getItem("theme");
+    let defaultIcon = localStorage.getItem("icon");
+
+    if (!defaultTheme) {
+      defaultTheme = "light-theme";
+    }
+
+    if (!defaultIcon) {
+      defaultIcon = "bx bx-sun";
+    }
+
+    changeTheme(defaultTheme);
+
+    $(".dark-mode-icon i").attr("class", defaultIcon); // Establece el icono inicial
+
+    $("#changeTheme").on("click", function () {
+      const newTheme = $("html").hasClass("dark-theme")
+        ? "light-theme"
+        : "dark-theme";
+      changeTheme(newTheme);
+      changeIcon(newTheme === "dark-theme" ? "bx bx-moon" : "bx bx-sun");
+
+      $(".dark-mode-icon i").attr(
+        "class",
+        newTheme === "dark-theme" ? "bx bx-moon" : "bx bx-sun"
+      );
+    });
+  });
   // new PerfectScrollbar(".app-container"),
   // new PerfectScrollbar(".header-message-list"),
   // new PerfectScrollbar(".header-notifications-list"),
@@ -11,15 +55,6 @@ $(function () {
     }),
     $(".mobile-toggle-menu").on("click", function () {
       $(".wrapper").addClass("toggled");
-    }),
-    $(".dark-mode").on("click", function () {
-      if ($(".dark-mode-icon i").attr("class") == "bx bx-sun") {
-        $(".dark-mode-icon i").attr("class", "bx bx-moon");
-        $("html").attr("class", "light-theme");
-      } else {
-        $(".dark-mode-icon i").attr("class", "bx bx-sun");
-        $("html").attr("class", "dark-theme");
-      }
     }),
     $(".toggle-icon").click(function () {
       $(".wrapper").hasClass("toggled")

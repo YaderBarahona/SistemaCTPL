@@ -12,6 +12,24 @@ class Principal extends Controller
       header("location: " . BASE_URL);
     }
 
+    //cerrar sesion por inactividad
+    // if (isset($_SESSION['last_activity'])) {
+    //   //tiempo en segundos
+    //   $inactive_time = 10;
+
+    //   $current_time = time();
+    //   $elapsed_time = $current_time - $_SESSION['last_activity'];
+
+    //   if ($elapsed_time > $inactive_time) {
+    //     session_unset();
+    //     session_destroy();
+    //     header('location: ' . BASE_URL);
+    //     exit();
+    //   } else {
+    //     $_SESSION['last_activity'] = $current_time;
+    //   }
+    // }
+
     //cargamos constructor de la instancia 
     parent::__construct();
   }

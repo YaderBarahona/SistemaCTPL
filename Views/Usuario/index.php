@@ -3,6 +3,19 @@
 <div class="page-wrapper">
   <div class="page-content">
 
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3 users">Usuarios</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item active management" aria-current="page">Gestión</li>
+            </li>
+            <li class="breadcrumb-item active users" aria-current="page">Usuarios</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
     <?php
     if (isset($data['permisoCrearUsuario']) && is_array($data['permisoCrearUsuario']) && isset($data['permisoCrearUsuario'][0]['tp_perm'])) {
       $permisoCrearUsuario = $data['permisoCrearUsuario'][0]['tp_perm'];
@@ -20,14 +33,14 @@
     <?php
     if (!empty($permisoCrearUsuario) || !empty($permisoGlobalUsuario)) {
     ?>
-      <button class="btn btn-primary mb-2 boton" type="button" onclick="abrirModal();">Nuevo <i class="fas fa-plus"></i></button>
+      <button class="btn btn-primary mb-2 boton new" type="button" onclick="abrirModal();">Nuevo <i class="fas fa-plus"></i></button>
 
     <?php } ?>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+        <h6 class="m-0 font-weight-bold text-primary text-center users">Usuarios</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -75,58 +88,59 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white" id="title_modal">Nuevo usuario</h5>
+        <h5 class="modal-title text-white newuser" id="title_modal">Nuevo usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
         </button>
       </div>
       <div class="modal-body">
         <form action="post" id="frmUsuario">
-
+        <input type="hidden" id="USUARIO_HIDDEN" name="USUARIO_HIDDEN">
+        <input type="hidden" id="CORREO_HIDDEN" name="CORREO_HIDDEN">
           <div class="formulario__grupo" id="grupo__usuario">
             <div class="form-group formulario__grupo-input">
               <input type="hidden" id="id_hidden" name="id_hidden">
-              <label for="inputUsuario" class="formulario__label">Usuario</label>
+              <label for="inputUsuario" class="formulario__label user">Usuario</label>
               <input id="inputUsuario" class="form-control formulario__input" type="text" name="inputUsuario" placeholder="Usuario">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo usuario permite ingresar entre 5 y 30 caracteres, solo admite letras, numeros, guion y guion bajo, no se permiten carácteres especiales ni espacios.</p>
+            <p class="formulario__input-error userValidation">El campo usuario permite ingresar entre 5 y 30 caracteres, solo admite letras, numeros, guion y guion bajo, no se permiten carácteres especiales ni espacios.</p>
           </div>
 
           <div class="formulario__grupo" id="grupo__correo">
             <div class="form-group formulario__grupo-input">
-              <label for="inputCorreo" class="formulario__label">Correo eléctronico</label>
+              <label for="inputCorreo" class="formulario__label email">Correo eléctronico</label>
               <input id="inputCorreo" class="form-control formulario__input" type="text" name="inputCorreo" placeholder="Correo eléctronico">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El correo eléctronico permite ingresar entre 8 y 50 caracteres ademas debe contener el simbolo de arroba "@" seguido del dominio y por ultimo una extensión (.com,.co,etc).</p>
+            <p class="formulario__input-error emailValidation">El correo eléctronico permite ingresar entre 8 y 50 caracteres ademas debe contener el simbolo de arroba "@" seguido del dominio y por ultimo una extensión (.com,.co,etc).</p>
           </div>
 
           <div class="row" id="contraseñas">
             <div class="col-md-6">
               <div class="formulario__grupo" id="grupo__nueva">
                 <div class="form-group formulario__grupo-input">
-                  <label for="inputPassword" class="formulario__label">Contraseña</label>
+                  <label for="inputPassword" class="formulario__label password">Contraseña</label>
                   <input id="inputPassword" class="form-control formulario__input" type="password" name="inputPassword" placeholder="Contraseña">
                   <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">La contraseña debe contener una letra minúscula, una letra mayúscula, un dígito, un carácter especial además la longitud mínima es de 8 caracteres y la longitud máxima es de 100 carácteres.</p>
+                <p class="formulario__input-error passwordValidation">La contraseña debe contener una letra minúscula, una letra mayúscula, un dígito, un carácter especial además la longitud mínima es de 8 caracteres y la longitud máxima es de 100 carácteres.</p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="formulario__grupo" id="grupo__confirmar">
                 <div class="form-group formulario__grupo-input">
-                  <label for="inputConfirmPassword" class="formulario__label">Confirmar contraseña</label>
+                  <label for="inputConfirmPassword" class="formulario__label confirmpassword">Confirmar contraseña</label>
                   <input id="inputConfirmPassword" class="form-control formulario__input" type="password" name="inputConfirmPassword" placeholder="Confirmar contraseña">
                   <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">El campo confirmar contraseña no coincide con el campo nueva contraseña.</p>
+                <p class="formulario__input-error confirmPasswordValidation">El campo confirmar contraseña no coincide con el campo nueva contraseña.</p>
               </div>
             </div>
           </div>
 
           <div class="form-group mb-2">
-            <label for="selectRol">Rol</label>
+            <label for="selectRol" class="role">Rol</label>
             <select id="selectRol" class="form-control" name="selectRol">
               <?php foreach ($data['roles'] as $row) { ?>
                 <!-- almacenamos en el value de cada option el id de cada registro de la tabla caja -->
@@ -146,7 +160,7 @@
           <!--  -->
           <div class="d-grid gap-2">
             <button id="btnModal" class="btn btn-primary formulario__btn boton" type="button" onclick="frmRegistrarUser(event);">Registrar</button>
-            <button id="btnModal2" class="btn btn-danger formulario__btn2 boton" type="button" data-bs-dismiss="modal">Cancelar</button>
+            <button id="btnModal2" class="btn btn-danger formulario__btn2 boton cancel" type="button" data-bs-dismiss="modal">Cancelar</button>
           </div>
         </form>
       </div>

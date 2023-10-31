@@ -3,13 +3,18 @@
 <!--start page wrapper -->
 <div class="page-wrapper">
   <div class="page-content">
-    <!-- Page Heading -->
-
-    <!-- <h1 class="h3 mb-2 text-gray-800">Tabla</h1> -->
-
-    <!-- <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Usuarios</li>
-  </ol> -->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3">Roles</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item active management" aria-current="page">Gestión</li>
+            </li>
+            <li class="breadcrumb-item active rp" aria-current="page">Roles y permisos</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
     <?php
     if (isset($data['permisoCrearRol']) && is_array($data['permisoCrearRol']) && isset($data['permisoCrearRol'][0]['tp_perm'])) {
@@ -28,14 +33,14 @@
     <?php
     if (!empty($permisoCrearRol) || !empty($permisoGlobalRol)) {
     ?>
-      <button id="btnNuevoRol" class="btn btn-primary mb-2 boton" type="button">Nuevo <i class="fas fa-plus"></i></i></i> </button>
+      <button id="btnNuevoRol" class="btn btn-primary mb-2 boton new" type="button">Nuevo <i class="fas fa-plus"></i></i></i> </button>
 
     <?php } ?>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
+        <h6 class="m-0 font-weight-bold text-primary text-center">Roles</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -91,21 +96,21 @@
             <div class="form-group formulario__grupo-input">
               <input type="hidden" id="id_rol_hidden" name="id_rol_hidden">
               <input type="hidden" id="tipo_rol_hidden" name="tipo_rol_hidden">
-              <label for="inputTipoRol" class="formulario__label">Tipo</label>
+              <label for="inputTipoRol" class="formulario__label roleType">Tipo</label>
               <input id="inputTipoRol" class="form-control formulario__input" type="text" name="inputTipoRol" placeholder="Tipo de rol">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo cédula permite ingresar de 1 a 30 caracteres y solo puede contener letras, numeros y guiones.</p>
+            <p class="formulario__input-error rolValidation">El campo cédula permite ingresar de 1 a 30 caracteres y solo puede contener letras, numeros y guiones.</p>
           </div>
 
           <div class="formulario__grupo" id="grupo__descripcion">
             <div class="form-group formulario__grupo-input">
-              <label for="inputDescripcion" class="form-label formulario__label">Descripción</label>
+              <label for="inputDescripcion" class="form-label formulario__label description">Descripción</label>
               <!-- <textarea id="inputDescripcion" class="form-control formulario__input" type="text" name="inputDescripcion" placeholder="Descripción del rol" cols="40" rows="4"></textarea> -->
               <textarea style="height: 170px; resize: none;" id="inputDescripcion" class="form-control formulario__input" type="text" name="inputDescripcion" placeholder="Descripción del rol" rows="4" cols="40"></textarea>
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo descripción permite ingresar entre 1 y 100 caracteres y solo puede contener letras.</p>
+            <p class="formulario__input-error rolDescriptionValidation">El campo descripción permite ingresar entre 1 y 100 caracteres y solo puede contener letras.</p>
           </div>
 
           <!--  -->
@@ -115,7 +120,7 @@
           <!--  -->
           <div class="d-grid gap-2">
             <button id="btnModal" class="btn btn-primary btn-block formulario__btn boton" type="submit">Registrar</button>
-            <button id="btnModal2" class="btn btn-danger btn-block formulario__btn2 boton" type="button">Cancelar</button>
+            <button id="btnModal2" class="btn btn-danger btn-block formulario__btn2 boton cancel" type="button">Cancelar</button>
           </div>
         </form>
       </div>

@@ -11,7 +11,7 @@
 <!--end wrapper-->
 
 <!--start switcher-->
-<div class="switcher-wrapper">
+<!-- <div class="switcher-wrapper">
   <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
   </div>
   <div class="switcher-body">
@@ -104,7 +104,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!--end switcher-->
 
 
@@ -209,6 +209,9 @@
 <script src="<?php echo BASE_URL; ?>Assets/js/sweetalert2.all.min.js"></script>
 <script src="<?php echo BASE_URL; ?>Assets/js/modulos/alertas.js"></script>
 <script src="<?php echo BASE_URL; ?>Assets/js/modulos/usuarios/cambiar_password.js"></script>
+
+<script src="<?php echo BASE_URL; ?>Assets/js/modulos/multilenguaje/multilenguaje.js"></script>
+<script src="<?php echo BASE_URL; ?>Assets/js/modulos/usuarios/logout.js"></script>
 
 </body>
 

@@ -15,7 +15,7 @@ async function mostrarAlertas() {
     // Agregar una pequeña espera para asegurarse de que la animación termine
     setTimeout(() => {
       resolve();
-    }, 3000); // Puedes ajustar este tiempo según lo necesites
+    }, 2500);
   });
 
   await Toast.fire({
@@ -124,31 +124,6 @@ function frmLogin(e) {
       "warning"
     );
   } else {
-    //Añadimos la imagen de carga en el contenedor
-    // $("#content").html(
-    //   '<div class="loading"><img src="http://localhost/sistema_CTPL/Assets/img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>'
-    // );
-
-    // $("#btnLogin").html(
-    //   '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>' +
-    //     '<span class="visually-hidden">Loading...</span>' +
-    //     "Validando datos"
-    // );
-    // $("#btnLogin").attr("disabled", "disabled");
-
-    // Antes de enviar la petición AJAX
-    //     const btnLogin = document.getElementById("btnLogin"); // Reemplaza con el ID de tu botón
-
-    //     // Agregar el efecto de "cargando" antes de enviar la petición AJAX
-    //     const loadingSpinner = `
-    //   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-    //   <span class="visually-hidden">Loading...</span>
-    //   Validando datos
-    // `;
-
-    //     btnLogin.innerHTML = loadingSpinner;
-    //     btnLogin.disabled = true; // Deshabilitar el botón
-
     const btnLogin = document.getElementById("btnLogin");
 
     btnLogin.classList.add("loading");
@@ -168,18 +143,9 @@ function frmLogin(e) {
       //verificamos el estado del status code
       // 4 y 200 respuesta lista
       if (this.readyState == 4 && this.status == 200) {
-        // Eliminar el efecto de "cargando"
-        // $("#content").html("");
-        // $("#btnLogin").removeAttr("disabled");
-
-        // setTimeout(function () {
-        //   $("#content").html("");
-        //   $("#btnLogin").removeAttr("disabled");
-        // }, 3000);
-
         setTimeout(function () {
           btnLogin.classList.remove("loading"); // Remueve la clase "loading" del botón
-        }, 3000);
+        }, 2500);
 
         //mostramos la respuesta de msg en consola
         console.log(this.responseText);
@@ -198,7 +164,7 @@ function frmLogin(e) {
                 "error"
               );
             });
-          }, 3000);
+          }, 2500);
         } else {
           setTimeout(function () {
             shakeForm().then(() => {
@@ -208,13 +174,37 @@ function frmLogin(e) {
                 "error"
               );
             });
-          }, 3000);
+          }, 2500);
           // document.getElementById("alerta").classList.remove("d-none");
           // document.getElementById("alerta").innerHTML = res;
         }
       }
     };
+
+    const url2 = BASE_URL + "Log/postLog";
+    const frm2 = document.getElementById("frmLogin");
+    hacerSolicitud(url2, new FormData(frm2), function (response) {
+      // console.log(response);
+      // response = JSON.parse(this.responseText);
+      // console.log(response);
+    });
   }
+}
+
+function hacerSolicitud(url, formData, callback) {
+  //peticion ajax
+  const http2 = new XMLHttpRequest();
+  //abrimos la conexion
+  //por metodo post y enviamos la url y true para especificar que es de forma asincrona
+  http2.open("POST", url, true);
+  //enviamos la peticion con el formdata
+  http2.send(formData);
+  //onreadystatechange para verificar cada vez que cambie el readyState (status code)
+  http2.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      callback(this.responseText);
+    }
+  };
 }
 
 function frmEnviarCorreo(e) {

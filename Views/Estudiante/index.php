@@ -4,13 +4,18 @@ include "Views/Templates/header.php"; ?>
 <div class="page-wrapper">
   <div class="page-content">
 
-    <!-- Page Heading -->
-
-    <!-- <h1 class="h3 mb-2 text-gray-800">Tabla</h1> -->
-
-    <!-- <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Usuarios</li>
-  </ol> -->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="breadcrumb-title pe-3 students">Estudiantes</div>
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item active management" aria-current="page">Gestión</li>
+            </li>
+            <li class="breadcrumb-item active students" aria-current="page">Estudiantes</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
     <?php
     if (isset($data['permisoCrearEstudiante']) && is_array($data['permisoCrearEstudiante']) && isset($data['permisoCrearEstudiante'][0]['tp_perm'])) {
@@ -29,14 +34,14 @@ include "Views/Templates/header.php"; ?>
     <?php
     if (!empty($permisoCrearEstudiante) || !empty($permisoGlobalEstudiante)) {
     ?>
-      <button id="btnNuevoEstudiante" class="btn btn-primary mb-2 boton" type="button">Nuevo <i class="fas fa-plus"></i></i> </button>
+      <button id="btnNuevoEstudiante" class="btn btn-primary mb-2 boton new" type="button">Nuevo <i class="fas fa-plus"></i></i> </button>
 
     <?php } ?>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Estudiantes</h6>
+        <h6 class="m-0 font-weight-bold text-primary text-center students">Estudiantes</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -95,39 +100,39 @@ include "Views/Templates/header.php"; ?>
             <div class="form-group formulario__grupo-input">
               <input type="hidden" id="id_hidden_estudiante" name="id_hidden_estudiante">
               <input type="hidden" id="CED_hidden" name="CED_hidden">
-              <label for="inputCed" class="formulario__label">Cédula</label>
+              <label for="inputCed" class="formulario__label ced">Cédula</label>
               <input id="inputCed" class="form-control formulario__input" type="text" name="inputCed" placeholder="Cédula">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo cédula permite ingresar de 8 a 15 caracteres y solo puede contener letras, numeros y guiones.</p>
+            <p class="formulario__input-error cedValidation">El campo cédula permite ingresar de 8 a 15 caracteres y solo puede contener letras, numeros y guiones.</p>
           </div>
 
           <div class="formulario__grupo" id="grupo__nombre">
             <div class="form-group formulario__grupo-input">
-              <label for="inputNombre" class="formulario__label">Nombre</label>
+              <label for="inputNombre" class="formulario__label fullname">Nombre</label>
               <input id="inputNombre" class="form-control formulario__input" type="text" name="inputNombre" placeholder="Nombre">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo nombre permite ingresar entre 1 y 30 caracteres y solo puede contener letras.</p>
+            <p class="formulario__input-error fullnameValidation">El campo nombre permite ingresar entre 1 y 30 caracteres y solo puede contener letras.</p>
           </div>
           <div class="formulario__grupo" id="grupo__apellido1">
             <div class="form-group formulario__grupo-input">
-              <label for="inputPa" class="formulario__label">Primer apellido</label>
+              <label for="inputPa" class="formulario__label pa">Primer apellido</label>
               <input id="inputPa" class="form-control formulario__input" type="text" name="inputPa" placeholder="Primer apellido">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo primer apellido permite ingresar entre 1 y 30 caracteres y solo puede contener letras.</p>
+            <p class="formulario__input-error paValidation">El campo primer apellido permite ingresar entre 1 y 30 caracteres y solo puede contener letras.</p>
           </div>
           <div class="formulario__grupo" id="grupo__apellido2">
             <div class="form-group formulario__grupo-input">
-              <label for="inputSa" class="formulario__label">Segundo apellido</label>
+              <label for="inputSa" class="formulario__label sa">Segundo apellido</label>
               <input id="inputSa" class="form-control formulario__input" type="text" name="inputSa" placeholder="Segundo apellido">
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-            <p class="formulario__input-error">El campo segundo apellido permite ingresar entre 1 y 30 caracteres y solo puede contener letras.</p>
+            <p class="formulario__input-error saValidation">El campo segundo apellido permite ingresar entre 1 y 30 caracteres y solo puede contener letras.</p>
           </div>
           <div class="form-group mb-2">
-            <label for="selectSec" class="formulario__label">Sección</label>
+            <label for="selectSec" class="formulario__label section">Sección</label>
             <select id="selectSec" class="form-control" name="selectSec">
               <?php foreach ($data['seccion'] as $row) { ?>
                 <!-- almacenamos en el value de cada option el id de cada registro de la tabla secciones -->
@@ -144,7 +149,7 @@ include "Views/Templates/header.php"; ?>
           <!--  -->
           <div class="d-grid gap-2">
             <button id="btnModal" class="btn btn-primary btn-block formulario__btn boton" type="submit">Registrar</button>
-            <button id="btnModal2" class="btn btn-danger btn-block formulario__btn2 boton" type="button">Cancelar</button>
+            <button id="btnModal2" class="btn btn-danger btn-block formulario__btn2 boton cancel" type="button">Cancelar</button>
           </div>
         </form>
       </div>

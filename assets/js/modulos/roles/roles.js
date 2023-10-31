@@ -13,27 +13,23 @@ const btnEditarRol = document.getElementById("btnEditarRol");
 const btnEliminarRol = document.getElementById("btnEliminarRol");
 
 document.addEventListener("DOMContentLoaded", () => {
+  let defaultDatatableLeng = localStorage.getItem("datatableLeng");
   let permisoReporteRol = document.getElementById("permisoReporteRol").value;
   // console.log(mostrarBotonesReportes);
   let permisoGlobalRol = document.getElementById("permisoGlobalRol").value;
 
-  let buttons = [
-    // ... otros botones ...
-  ];
+  let buttons = [];
 
   if (permisoReporteRol != "" || permisoGlobalRol != "") {
     buttons.push(
       {
-        //Botón para Excel
         extend: "excelHtml5",
         footer: true,
         title: "Reporte de usuarios",
         filename: "Reporte de roles",
 
-        //Aquí es donde generas el botón personalizado
         text: '<span class="badge bg-success"><i class="fas fa-file-excel"></i></span>',
       },
-      //Botón para PDF
       {
         extend: "pdfHtml5",
         //text: "Save as PDF",
@@ -51,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
           columns: [0, 1, 2],
         },
       },
-      //Botón para copiar
       {
         extend: "copyHtml5",
         footer: true,
@@ -65,14 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
           columns: [0, 1, 2],
         },
       },
-      //Botón para print
       {
         extend: "print",
         footer: true,
         filename: "Export_File_print",
         text: '<span class="badge bg-dark"><i class="fas fa-print"></i></span>',
       },
-      //Botón para cvs
       {
         extend: "csvHtml5",
         footer: true,
@@ -110,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-5'i><'col-sm-7'p>>",
     language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json",
+      url: defaultDatatableLeng,
     },
 
     buttons: buttons,
@@ -121,8 +114,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //evento al darle click al boton de nuevo en la vista estudiante
 btnNuevoRol.addEventListener("click", () => {
-  document.getElementById("title_modal").innerHTML = "Nuevo rol";
-  document.getElementById("btnModal").innerHTML = "Registrar";
+  let defaultLang = localStorage.getItem("lang");
+
+  //labels
+  // Obtener el texto del Label
+  let labelTextRol = document.querySelector(
+    'label[for="inputTipoRol"]'
+  ).innerText;
+  let labelTextDescripcion = document.querySelector(
+    'label[for="inputDescripcion"]'
+  ).innerText;
+
+  if (defaultLang == "es") {
+    document.getElementById("title_modal").innerHTML = "Nuevo Rol";
+    document.getElementById("btnModal").innerHTML = "Agregar";
+    document
+      .getElementById("inputTipoRol")
+      .setAttribute("placeholder", labelTextRol);
+    document
+      .getElementById("inputDescripcion")
+      .setAttribute("placeholder", labelTextDescripcion);
+  } else {
+    document.getElementById("title_modal").innerHTML = "New Rol";
+    document.getElementById("btnModal").innerHTML = "Add";
+    document
+      .getElementById("inputTipoRol")
+      .setAttribute("placeholder", labelTextRol);
+    document
+      .getElementById("inputDescripcion")
+      .setAttribute("placeholder", labelTextDescripcion);
+  }
+
   document.getElementById("frmRol").reset();
   //jquery
   //abrir modal mediante el id del modal para agregar usuario
@@ -138,7 +160,7 @@ const textarea = document.querySelectorAll("#frmRol textarea");
 const expresiones = {
   tipo: /^[a-zA-ZÀ-ÿ\s\_\-]{1,30}$/, //
 
-  descripcion: /^[a-zA-ZÀ-ÿ\s\_\-\,]{1,100}$/,
+  descripcion: /^[a-zA-ZÀ-ÿ\s\_\-\,\.]{1,100}$/,
 };
 
 const campos = {
